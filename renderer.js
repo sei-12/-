@@ -70,7 +70,7 @@ const init = async function(){
 
 class Elms{
     init(){
-        this.talkLoomList = document.getElementById("")
+        this.talkLoomList = document.getElementById("talk-loom-list")
     }
 }
 

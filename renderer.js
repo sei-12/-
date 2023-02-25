@@ -26,11 +26,19 @@ class TalkRoomConfig{
     }
     
     constructor(title,logFilePath){
-
+        this.node = this.buildNode(title)
     }
 
-    buildNode(){
+    buildNode(title){
+        let node = document.createElement("input")
+        node.type = "button"
+        node.value = title
+        node.classList.add("talk-room-btn")
+        return node
+    }
 
+    setEventListener(){
+        this.node.addEventListener("click",()=>{openTalkRoom(this)})
     }
 
     toLine(){

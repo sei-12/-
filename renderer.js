@@ -20,3 +20,18 @@ const openTalkLoom = function(talkLoomConfig){
 
     
 }
+
+const speechBubble = {
+    toNode : function(fileLine){
+
+    },
+    toString: function(node){
+        
+    },
+    canBuildNode(fileLine){
+        
+    },
+    canBuildString(node){
+
+    },
+}

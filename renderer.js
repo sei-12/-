@@ -1,11 +1,11 @@
 
-class TalkLoomConfig{
+class TalkRoomConfig{
     static fromFileToConfigs(fileText){
         let configs = []
         let lines = fileText.split("\n")
         lines.forEach(line =>{
-            if(TalkLoomConfig.canBuildLine(line)){
-                configs.push(TalkLoomConfig.fromLine(line))
+            if(TalkRoomConfig.canBuildLine(line)){
+                configs.push(TalkRoomConfig.fromLine(line))
             }
         })
 
@@ -14,7 +14,7 @@ class TalkLoomConfig{
 
     static fromLine(line){
         let s_line = line.split(",")
-        return new TalkLoomConfig(s_line[0],s_line[1])
+        return new TalkRoomConfig(s_line[0],s_line[1])
     }
 
     static canBuildLine(line){
@@ -38,16 +38,16 @@ class TalkLoomConfig{
     }
 }
 
-const createTalkLoom = function(){
+const createTalkRoom = function(){
 
 }
 
-const openTalkLoom = function(talkLoomConfig){
-    if(talkLoomConfig instanceof TalkLoomConfig == false){
-        throw Error("talkLoomConfig instanceof TalkLoomConfig == false")
+const openTalkRoom = function(talkRoomConfig){
+    if(talkRoomConfig instanceof TalkRoomConfig == false){
+        throw Error("talkRoomConfig instanceof TalkRoomConfig == false")
     }
     
-    console.log("open talk loom")
+    console.log("open talk room")
 
     
 }
@@ -94,31 +94,31 @@ class LocalFile{
 }
 
 
-const setTalkLooms = function(){
-    elms.talkLoomList.innerHTML = ""
-    talkLoomConfigs.forEach(lm => {
-        elms.talkLoomList.appendChild(lm.node)
+const setTalkRooms = function(){
+    elms.talkRoomList.innerHTML = ""
+    talkRoomConfigs.forEach(lm => {
+        elms.talkRoomList.appendChild(lm.node)
     })
 }
 
 
 const init = async function(){
     elms.init()
-    let loadedConfigs = TalkLoomConfig.fromFileToConfigs(await loomConfigsFile.read())
-    talkLoomConfigs.push(...loadedConfigs)
-    setTalkLooms()
+    let loadedConfigs = TalkRoomConfig.fromFileToConfigs(await talkRoomConfigFile.read())
+    talkRoomConfigs.push(...loadedConfigs)
+    setTalkRooms()
 
 }
 
 class Elms{
     init(){
-        this.talkLoomList = document.getElementById("talk-loom-list")
+        this.talkRoomList = document.getElementById("talk-room-list")
     }
 }
 
 const elms = new Elms()
-const loomConfigsFile = new LocalFile(Config.TalkLoomConfigsFilePath)
-const talkLoomConfigs = [];
+const talkRoomConfigFile = new LocalFile(Config.TalkRoomConfigsFilePath)
+const talkRoomConfigs = [];
 
 
 window.addEventListener("load",init)

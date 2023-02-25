@@ -1,4 +1,4 @@
 class Config{
-    static TalkLoomConfigsFilePath = "./test.txt"
+    static TalkRoomConfigsFilePath = "./test.txt"
     
 }

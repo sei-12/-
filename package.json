@@ -1,0 +1,12 @@
+{
+  "name": "mind-thread",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^23.1.1"
+  },
+  "scripts": {
+      "start": "electron ."
+  }
+}

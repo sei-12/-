@@ -27,6 +27,7 @@ class TalkRoomConfig{
     
     constructor(title,logFilePath){
         this.node = this.buildNode(title)
+        this.setEventListener()
     }
 
     buildNode(title){

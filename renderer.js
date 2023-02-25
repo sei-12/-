@@ -59,8 +59,6 @@ class LocalFile{
 }
 
 
-// テストが必要な項目
-// talkLoomConfig[i].node が100% htmlelementである
 const setTalkLooms = function(){
     elms.talkLoomList.innerHTML = ""
     talkLoomConfigs.forEach(lm => {

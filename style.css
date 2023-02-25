@@ -1,3 +1,7 @@
+body{
+    background-color: rgb(50, 50, 55);
+}
+
 #talk-room-btn{
     padding: 10px;
 }

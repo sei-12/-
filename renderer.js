@@ -132,6 +132,7 @@ const init = async function(){
 class Elms{
     init(){
         this.talkRoomList = document.getElementById("talk-room-list")
+        this.speechBubbleField = document.getElementById("speech-bubble-field")
     }
 }
 

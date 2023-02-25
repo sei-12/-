@@ -89,7 +89,7 @@ class LocalFile{
     }
 
     async read(){
-        return await window.myAPI.loadDataFile(this.path)
+        return await window.myAPI.loadFile(this.path)
     }
 
     async writeSync(text){

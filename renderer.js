@@ -44,4 +44,8 @@ class LocalFile{
     read(){
         
     }
+
+    write(){
+
+    }
 }

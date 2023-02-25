@@ -57,3 +57,9 @@ class LocalFile{
 
     }
 }
+
+const init = async function(){
+
+}
+
+window.addEventListener("load",init)

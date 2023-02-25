@@ -41,7 +41,11 @@ class LocalFile{
         this.path = path
     }
 
-    read(){
+    async read(){
+        
+    }
+
+    async writeSync(){
         
     }
 

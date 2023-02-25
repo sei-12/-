@@ -1,12 +1,28 @@
 
 class TalkLoomConfig{
     static fromFileToConfigs(fileText){
+        let configs = []
+        let lines = fileText.split("\n")
+        lines.forEach(line =>{
+            if(TalkLoomConfig.canBuildLine(line)){
+                configs.push(TalkLoomConfig.fromLine(line))
+            }
+        })
 
+        return configs
     }
 
-    static fromLine(){
+    static fromLine(line){
+        let s_line = line.split(",")
+        return new TalkLoomConfig(s_line[0],s_line[1])
+    }
 
+    static canBuildLine(line){
+        if(line.includes(",") == false){
+            return false
+        }
 
+        return true
     }
     
     constructor(title,logFilePath){

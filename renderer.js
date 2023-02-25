@@ -13,6 +13,10 @@ class TalkLoomConfig{
     }
 }
 
+const createTalkLoom = function(){
+
+}
+
 const openTalkLoom = function(talkLoomConfig){
     if(talkLoomConfig instanceof TalkLoomConfig == false){
         throw Error("talkLoomConfig instanceof TalkLoomConfig == false")

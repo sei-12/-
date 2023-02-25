@@ -59,7 +59,14 @@ class LocalFile{
 }
 
 const init = async function(){
+    elms.init()
 
+class Elms{
+    init(){
+        this.talkLoomList = document.getElementById("")
+    }
 }
+
+const elms = new Elms()
 
 window.addEventListener("load",init)

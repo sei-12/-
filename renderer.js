@@ -61,28 +61,6 @@ const openTalkRoom = function(talkRoomConfig){
     
 }
 
-class speechBubble{
-
-    constructor(){
-        this.node = this.#buildNode()
-    }
-
-    #buildNode(){
-
-    }
-
-    toString(node){
-        
-    }
-
-    canBuildNode(fileLine){
-        
-    }
-
-    canBuildString(node){
-
-    }
-}
 
 class LocalFile{
     constructor(path){
@@ -122,7 +100,6 @@ const init = async function(){
 class Elms{
     init(){
         this.talkRoomList = document.getElementById("talk-room-list")
-        this.speechBubbleField = document.getElementById("speech-bubble-field")
     }
 }
 

@@ -51,6 +51,16 @@ const createTalkRoom = function(){
 
 }
 
+class screenSwicher{
+    static rooms(){
+
+    }
+
+    static talkRoom(){
+
+    }
+}
+
 const openTalkRoom = function(talkRoomConfig){
     if(talkRoomConfig instanceof TalkRoomConfig == false){
         throw Error("talkRoomConfig instanceof TalkRoomConfig == false")

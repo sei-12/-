@@ -1,10 +1,19 @@
 
 class TalkLoomConfig{
+    static fromFileToConfigs(fileText){
+
+    }
+
     static fromLine(){
+
 
     }
     
     constructor(title,logFilePath){
+
+    }
+
+    buildNode(){
 
     }
 
@@ -21,23 +30,33 @@ const openTalkLoom = function(talkLoomConfig){
     if(talkLoomConfig instanceof TalkLoomConfig == false){
         throw Error("talkLoomConfig instanceof TalkLoomConfig == false")
     }
+    
+    console.log("open talk loom")
 
     
 }
 
-const speechBubble = {
-    toNode : function(fileLine){
+class speechBubble{
 
-    },
-    toString: function(node){
+    constructor(){
+        this.node = this.#buildNode()
+    }
+
+    #buildNode(){
+
+    }
+
+    toString(node){
         
-    },
+    }
+
     canBuildNode(fileLine){
         
-    },
+    }
+
     canBuildString(node){
 
-    },
+    }
 }
 
 class LocalFile{
@@ -50,7 +69,7 @@ class LocalFile{
     }
 
     async writeSync(){
-        
+
     }
 
     write(){
@@ -65,8 +84,15 @@ const setTalkLooms = function(){
         elms.talkLoomList.appendChild(lm.node)
     })
 }
+
+
 const init = async function(){
     elms.init()
+    let loadedConfigs = TalkLoomConfig.fromFileToConfigs(await loomConfigsFile.read())
+    talkLoomConfigs.push(...loadedConfigs)
+    setTalkLooms()
+
+}
 
 class Elms{
     init(){
@@ -75,5 +101,8 @@ class Elms{
 }
 
 const elms = new Elms()
+const loomConfigsFile = new LocalFile(Config.TalkLoomConfigsFilePath)
+const talkLoomConfigs = [];
+
 
 window.addEventListener("load",init)

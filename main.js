@@ -13,8 +13,8 @@ const createWindow = () => {
         },
     });
 
-    ipcMain.handle('load-data-file',  async()=> fs.readFileSync(DATA_FILE_PATH,'utf-8'));
-    ipcMain.handle('write-data-file', async (_,text) => fs.writeFileSync(DATA_FILE_PATH,text));
+    ipcMain.handle('load-data-file',  async(_,path)=> fs.readFileSync(path,'utf-8'));
+    ipcMain.handle('write-data-file', async (_,text,path) => fs.writeFileSync(path,text));
 
     mainWindow.loadFile('index.html');
 };

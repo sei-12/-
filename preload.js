@@ -1,6 +1,6 @@
 const { ipcRenderer, contextBridge } = require('electron');
 
 contextBridge.exposeInMainWorld('myAPI', {
-    loadDataFile: () => ipcRenderer.invoke('load-data-file'),
-    writeDataFile:(txt) => ipcRenderer.invoke('write-data-file',txt),
+    loadFile: (path) => ipcRenderer.invoke('load-data-file',path),
+    writeFile:(txt,path) => ipcRenderer.invoke('write-data-file',txt,path),
 });

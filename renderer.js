@@ -65,15 +65,15 @@ class LocalFile{
     }
 
     async read(){
-        
+        return await window.myAPI.loadDataFile(this.path)
     }
 
-    async writeSync(){
-
+    async writeSync(text){
+        await window.myAPI.writeFile(text,this.path)
     }
 
     write(){
-
+        window.myAPI.writeFile(text,this.path)
     }
 }
 

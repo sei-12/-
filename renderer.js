@@ -35,3 +35,13 @@ const speechBubble = {
 
     },
 }
+
+class LocalFile{
+    constructor(path){
+        this.path = path
+    }
+
+    read(){
+        
+    }
+}

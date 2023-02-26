@@ -63,37 +63,6 @@ const openTalkRoom = function(talkRoomConfig){
     
 }
 
-// トークルームのウィンドウを管理する
-// 同じトークルームを二つ以上開かない
-// トークルームのウィンドウに対してconfigを渡す
-
-class TalkRoomWindows{
-
-    constructor(){
-        this.configs = []
-    }
-
-    #crateWindow(config){
-
-    }
-
-    #switchWindow(config){
-
-    }
-
-    open(config){
-        if(this.configs.findIndex( t_config => TalkRoomConfig.equal(t_config,config) ) != -1){
-            this.#switchWindow(config)
-        }else{
-            this.#crateWindow(config)
-        }
-    }
-
-    close(config){
-
-    }
-}
-
 
 class LocalFile{
     constructor(path){

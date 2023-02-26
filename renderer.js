@@ -97,16 +97,15 @@ class TalkRoomView{
 
     }
 
-    #putBubbles(){
-
-    }
-
     set(config){
 
     }
     
     updateView(){
-
+        this.node.innerHTML = ""
+        this.bubbles.forEach(bubble => {
+            this.node.appendChild(bubble.node)
+        })
     }
 
     // 何も表示されない場合はnotitledがある <- タイトルを後からつけることもできる

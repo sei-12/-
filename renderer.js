@@ -80,6 +80,38 @@ class Bubble{
 
 
 
+// 表示する
+// 表示されている対話を揮発のデータで保持している
+class TalkRoomView{
+    constructor(){
+        this.hasTaklRoom = false    
+        this.talkroom = null // <- TalkRoom のインスタンス
+        this.bubbles = []
+    }
+
+    init(){
+        this.node = document.getElementById("")
+    }
+
+    pushBubble(bubble){
+
+    }
+
+    #putBubbles(){
+
+    }
+
+    set(config){
+
+    }
+    
+    updateView(){
+
+    }
+
+    // 何も表示されない場合はnotitledがある <- タイトルを後からつけることもできる
+}
+
 const craeteBubble = function(color,text){
     let bubble = new Bubble(color,text)
     talkRoomView.pushBubble(bubble)
@@ -115,6 +147,7 @@ const setTalkRooms = function(){
 
 const init = async function(){
     elms.init()
+    talkRoomView.init()
     let loadedConfigs = TalkRoomConfig.fromFileToConfigs(await talkRoomConfigFile.read())
     talkRoomConfigs.push(...loadedConfigs)
     setTalkRooms()
@@ -130,6 +163,6 @@ class Elms{
 const elms = new Elms()
 const talkRoomConfigFile = new LocalFile(Config.TalkRoomConfigsFilePath)
 const talkRoomConfigs = [];
-
+const talkRoomView = new TalkRoomView()
 
 window.addEventListener("load",init)

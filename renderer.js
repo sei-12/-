@@ -46,7 +46,10 @@ class TalkRoomConfig{
     }
 
     setEventListener(){
-        this.node.addEventListener("click",()=>{talkRoomView.set(this)})
+        this.node.addEventListener("click",()=>{
+            talkRoomView.set(this)
+            talkRoomView.updateView()
+        })
     }
 
     toLine(){
@@ -139,16 +142,18 @@ class TalkRoomView{
     init(){
         this.title = document.getElementById("")
         this.node = document.getElementById("")
-
-        this.setNoTitled()
     }
 
     setNoTitled(){
         this.title.innerText = "No Titled"
+        this.bubbles = []
     }
 
     pushBubble(bubble){
         this.bubbles.push(bubble)
+
+        if(this.talkroom == null) return;
+
         this.talkroom.saveBubbles(this.bubbles)
     }
 
@@ -156,7 +161,6 @@ class TalkRoomView{
         this.talkroom = new TalkRoom(config)
         this.bubbles = this.talkroom.loadBubbles()
         this.title.innerText = config.title
-        this.updateView()
     }
     
     updateView(){
@@ -205,6 +209,7 @@ const setTalkRooms = function(){
 const init = async function(){
     elms.init()
     talkRoomView.init()
+    talkRoomView.updateView()
     let loadedConfigs = TalkRoomConfig.fromFileToConfigs(await talkRoomConfigFile.read())
     talkRoomConfigs.push(...loadedConfigs)
     setTalkRooms()

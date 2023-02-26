@@ -52,6 +52,7 @@ class TalkRoomConfig{
     }
 }
 
+// ユーザーからの操作
 const createTalkRoom = function(){
 
 }

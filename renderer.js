@@ -133,7 +133,7 @@ class TalkRoom{
 
 // 表示する
 // 表示されている対話を揮発のデータで保持している
-class TalkRoomView{
+class TalkRoomView{ // <- talkRoomBubblesの方がいい?
     constructor(){
         this.talkroom = null // <- TalkRoom のインスタンス
         this.bubbles = []
@@ -155,6 +155,25 @@ class TalkRoomView{
         if(this.talkroom == null) return;
 
         this.talkroom.saveBubbles(this.bubbles)
+    }
+
+    async namingTitle(title){
+        // 未保存のthis.bubblesを渡すことがこの操作におけるこのクラスの仕事
+
+        // この操作はこの階層ではないきがする
+        // リファクタリングの時に直す
+
+
+        if(this.talkroom != null){
+            // この操作をすることはできない
+            throw Error("できない! 説明はソースをみろ")
+        }
+        let filePath = await window.myAPI.createFile()
+        let config = new TalkRoomConfig(title,filePath)
+        
+        let talkroom = new TalkRoom(config)
+        talkroom.saveBubbles(this.bubbles)
+        return config
     }
 
     set(config){

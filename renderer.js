@@ -45,7 +45,7 @@ class TalkRoomConfig{
     }
 
     setEventListener(){
-        this.node.addEventListener("click",()=>{openTalkRoom(this)})
+        this.node.addEventListener("click",()=>{talkRoomView.set(this)})
     }
 
     toLine(){

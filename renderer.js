@@ -85,15 +85,32 @@ class Bubble{
 
 class TalkRoom{
     constructor(config){
-        
+        if(config instanceof TalkRoomConfig){
+            this.config = config            
+        }else{
+            throw Error("configはTalkRoomConfigである必要がある")
+        }
     }
 
-    loadBubbles(){
-        
+    async loadBubbles(){
+        let dataText = await window.loadFile(this.config.filePath)
+        let bubbles = []
+        dataText.split("\n").forEach(line => {
+            if(Bubble.canBuild(line)){
+                bubbles.push(Bubble.fromLine(line))
+            }
+        })
+
+        return bubbles
     }
 
     saveBubbles(bubbles){
+        let dataText = ""
+        bubbles.forEach(bubble => {
+            dataText += bubble.toLine() + "\n"
+        })
 
+        window.writeFile(dataText,this.config.filePath)
     }
 }
 

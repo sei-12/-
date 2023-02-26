@@ -79,6 +79,22 @@ class Bubble{
 }
 
 
+// 保存する
+// 読み込む
+
+class TalkRoom{
+    constructor(config){
+        
+    }
+
+    loadBubbles(){
+        
+    }
+
+    saveBubbles(bubbles){
+
+    }
+}
 
 // 表示する
 // 表示されている対話を揮発のデータで保持している

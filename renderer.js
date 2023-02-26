@@ -52,13 +52,32 @@ const createTalkRoom = function(){
 }
 
 const openTalkRoom = function(talkRoomConfig){
-    if(talkRoomConfig instanceof TalkRoomConfig == false){
-        throw Error("talkRoomConfig instanceof TalkRoomConfig == false")
-    }
-    
-    console.log("open talk room")
 
-    
+class TalkRoomWindows{
+
+    constructor(){
+        this.configs = []
+    }
+
+    #crateWindow(config){
+
+    }
+
+    #switchWindow(config){
+
+    }
+
+    open(config){
+        if(this.configs.findIndex( t_config => TalkRoomConfig.equal(t_config,config) ) != -1){
+            this.#switchWindow(config)
+        }else{
+            this.#crateWindow(config)
+        }
+    }
+
+    close(config){
+
+    }
 }
 
 

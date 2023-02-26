@@ -3,6 +3,19 @@ const path = require('path');
 const fs = require('fs');
 const DATA_FILE_PATH = "*****"
 
+
+const generateRandomString = function(length){
+    
+}
+
+const craeteFile = async function(){
+    let fileName = generateRandomString(16)
+    let path = fileName
+
+
+    return path
+}
+
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
         width: 600,
@@ -15,7 +28,7 @@ const createWindow = () => {
 
     ipcMain.handle('load-data-file',  async(_,path)=> fs.readFileSync(path,'utf-8'));
     ipcMain.handle('write-data-file', async (_,text,path) => fs.writeFileSync(path,text));
-
+    ipcMain.handle('create-data-file',craeteFile)
     mainWindow.loadFile('index.html');
 };
 

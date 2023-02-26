@@ -31,6 +31,7 @@ class TalkRoomConfig{
     }
     
     constructor(title,logFilePath){
+        this.title = title
         this.node = this.buildNode(title)
         this.setEventListener()
     }
@@ -105,6 +106,7 @@ class TalkRoomView{
     }
 
     init(){
+        this.title = document.getElementById("")
         this.node = document.getElementById("")
     }
 
@@ -116,6 +118,7 @@ class TalkRoomView{
     set(config){
         this.talkroom = new TalkRoom(config)
         this.bubbles = this.talkroom.loadBubbles()
+        this.title.innerText = config.title
         this.updateView()
     }
     

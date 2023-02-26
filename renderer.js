@@ -57,6 +57,15 @@ const createTalkRoom = function(){
 }
 
 const openTalkRoom = function(talkRoomConfig){
+    window.open("./talkroom/index.html")
+    // 新しいウィンドウを開く
+    // 最後からN個分の吹き出しを読み込む
+    
+}
+
+// トークルームのウィンドウを管理する
+// 同じトークルームを二つ以上開かない
+// トークルームのウィンドウに対してconfigを渡す
 
 class TalkRoomWindows{
 

@@ -121,13 +121,13 @@ class TalkRoom{
         return bubbles
     }
 
-    saveBubbles(bubbles){
+    async saveBubbles(bubbles){
         let dataText = ""
         bubbles.forEach(bubble => {
             dataText += bubble.toLine() + "\n"
         })
 
-        window.writeFile(dataText,this.path)
+        await window.writeFile(dataText,this.path)
     }
 }
 

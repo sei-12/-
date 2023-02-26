@@ -67,16 +67,29 @@ const openTalkRoom = function(talkRoomConfig){
 
 
 class Bubble{
+    static canBuild(lineString){
+
+    }
+
+    static fromLine(line){
+
+    }
+
     constructor(color,text){
         this.node = this.buildNode()
         this.node.innerText = text
         this.node.style.backgroundColor = color
     }
 
+    toLine(){
+
+    }
+
     buildNode(){
         let node = document.createElement("div")// 要
         return node
     }
+
 }
 
 

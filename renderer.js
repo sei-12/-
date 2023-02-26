@@ -100,7 +100,6 @@ class TalkRoom{
 // 表示されている対話を揮発のデータで保持している
 class TalkRoomView{
     constructor(){
-        this.hasTaklRoom = false    
         this.talkroom = null // <- TalkRoom のインスタンス
         this.bubbles = []
     }
@@ -110,11 +109,14 @@ class TalkRoomView{
     }
 
     pushBubble(bubble){
-
+        this.bubbles.push(bubble)
+        this.talkroom.saveBubbles(this.bubbles)
     }
 
     set(config){
-
+        this.talkroom = new TalkRoom(config)
+        this.bubbles = this.talkroom.loadBubbles()
+        this.updateView()
     }
     
     updateView(){

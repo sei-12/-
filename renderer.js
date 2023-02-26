@@ -65,6 +65,20 @@ const openTalkRoom = function(talkRoomConfig){
 }
 
 
+class Bubble{
+    constructor(color,text){
+        this.node = this.buildNode()
+        this.node.innerText = text
+        this.node.style.backgroundColor = color
+    }
+
+    buildNode(){
+        let node = document.createElement("div")// 要
+        return node
+    }
+}
+
+
 class LocalFile{
     constructor(path){
         this.path = path

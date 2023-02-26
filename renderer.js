@@ -79,6 +79,13 @@ class Bubble{
 }
 
 
+
+const craeteBubble = function(color,text){
+    let bubble = new Bubble(color,text)
+    talkRoomView.pushBubble(bubble)
+    talkRoomView.updateView()
+}
+
 class LocalFile{
     constructor(path){
         this.path = path

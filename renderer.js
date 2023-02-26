@@ -108,6 +108,12 @@ class TalkRoomView{
     init(){
         this.title = document.getElementById("")
         this.node = document.getElementById("")
+
+        this.setNoTitled()
+    }
+
+    setNoTitled(){
+        this.title.innerText = "No Titled"
     }
 
     pushBubble(bubble){

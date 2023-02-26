@@ -1,5 +1,10 @@
 
 class TalkRoomConfig{
+
+    static equal(A,B){
+
+    }
+
     static fromFileToConfigs(fileText){
         let configs = []
         let lines = fileText.split("\n")

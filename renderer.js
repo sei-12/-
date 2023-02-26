@@ -103,14 +103,14 @@ class Bubble{
 class TalkRoom{
     constructor(config){
         if(config instanceof TalkRoomConfig){
-            this.config = config            
+            this.path = config.filePath
         }else{
             throw Error("configはTalkRoomConfigである必要がある")
         }
     }
 
     async loadBubbles(){
-        let dataText = await window.loadFile(this.config.filePath)
+        let dataText = await window.loadFile(this.path)
         let bubbles = []
         dataText.split("\n").forEach(line => {
             if(Bubble.canBuild(line)){
@@ -127,7 +127,7 @@ class TalkRoom{
             dataText += bubble.toLine() + "\n"
         })
 
-        window.writeFile(dataText,this.config.filePath)
+        window.writeFile(dataText,this.path)
     }
 }
 

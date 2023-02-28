@@ -7,7 +7,8 @@ class Con{
     }
 
     log(text,end="\n"){
-        this.node.innerText += text + end
+        this.node.innerText += "" + text + end
+        this.node.scrollTop = this.node.scrollHeight
     }
 }
 
@@ -21,10 +22,17 @@ const testBubbleCanBuild = function(){
         }
     }
     let count = 0
+    con.log("Test : Bubble.canBuild()")
     test("aaa,red",true)
     test("bbb,",false)
     test("ccc,aaa,ddd",false)
     test(",aaa",false)
+}
+
+const testConsole = function(){
+    for(let i = 0; i < 100; ++i){
+        con.log(i)
+    }
 }
 
 const con = new Con()

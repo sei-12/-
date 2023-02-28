@@ -1,3 +1,17 @@
 body{
-    background-color: rgb(50, 50, 55);
+    background-color: rgb(40, 40, 45);
+    overflow: hidden;
+}
+
+#test-console::-webkit-scrollbar{
+    display: none;
+}
+
+#test-console{
+    font-size: large;
+    color: white;
+    margin-left: 5px;
+    width : 80vw;
+    height: 94vh;
+    overflow: scroll;
 }

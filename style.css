@@ -1,7 +1,31 @@
 body{
     background-color: rgb(50, 50, 55);
+    overflow: hidden;
+}
+
+#body-inner{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+:root{
+    --list-width : 20vw;
+    --room-width : 80vw;
 }
 
 #talk-room-btn{
     padding: 10px;
 }
+
+#talk-room-list{
+    width: var(--list-width);
+    height: 100vh;
+}
+
+#talk-room{
+    width: var(--room-width);
+    height: 100vh;
+}
+

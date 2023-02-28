@@ -61,11 +61,21 @@ class TalkRoomConfig{
 
 class Bubble{
     static canBuild(lineString){
-
+        // , を一個しか含んでいない
+        let hasComma = false
+        lineString.forEach(char => {
+            if(char == ","){
+                if(hasComma){
+                    return false
+                }
+                hasComma = true
+            }
+        })
+        return hasComma
     }
 
     static fromLine(line){
-
+        return new Bubble(...line.split(","))
     }
 
     constructor(text,color){
@@ -75,7 +85,7 @@ class Bubble{
     }
 
     toLine(){
-
+        return this.node.innerText + "," + this.node.backgroundColor
     }
 
     buildNode(){

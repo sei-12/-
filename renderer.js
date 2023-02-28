@@ -89,6 +89,7 @@ class Bubble{
 
     buildNode(){
         let node = document.createElement("div")// 要
+        node.classList.add("bubble")
         return node
     }
 

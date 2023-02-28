@@ -46,9 +46,9 @@ class TalkRoomConfig{
     }
 
     setEventListener(){
-        this.node.addEventListener("click",()=>{
+        this.node.addEventListener("click",async ()=>{
             talkRoomView.config = this
-            talkRoomView.loadBubbles()
+            await talkRoomView.loadBubbles()
             talkRoomView.title.innerText = this.title
             talkRoomView.updateView()
         })

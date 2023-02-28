@@ -121,8 +121,8 @@ const saveBubbles = async function(config,bubbles){
 // 表示されている対話を揮発のデータで保持している
 class TalkRoomView{ // <- talkRoomBubblesの方がいい?
     constructor(){
-        this.talkroom = null // <- TalkRoom のインスタンス
         this.bubbles = []
+        this.config = null
     }
 
     init(){
@@ -139,8 +139,7 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         this.bubbles.push(bubble)
 
         if(this.talkroom == null) return;
-
-        this.talkroom.saveBubbles(this.bubbles)
+        saveBubbles(this.config)
     }
 
     async namingTitle(title){
@@ -163,8 +162,8 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
     }
 
     set(config){
-        this.talkroom = new TalkRoom(config)
-        this.bubbles = this.talkroom.loadBubbles()
+        this.config = config
+        this.bubbles = loadBubbles(config)
         this.title.innerText = config.title
     }
     

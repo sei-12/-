@@ -1,1 +1,1 @@
-# Mind Thread
+#  一人会議

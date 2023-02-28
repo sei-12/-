@@ -79,10 +79,12 @@ class Bubble{
         this.node = this.buildNode()
         this.node.innerText = text
         this.node.style.backgroundColor = color
+        this.text = text
+        this.color = color
     }
 
     toLine(){
-        return this.node.innerText + "," + this.node.backgroundColor
+        return this.text + "," + this.color
     }
 
     buildNode(){

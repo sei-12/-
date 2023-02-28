@@ -48,7 +48,7 @@ class TalkRoomConfig{
     setEventListener(){
         this.node.addEventListener("click",()=>{
             talkRoomView.config = this
-            talkRoomView.bubbles = loadBubbles(this)
+            talkRoomView.loadBubbles()
             talkRoomView.title.innerText = this.title
             talkRoomView.updateView()
         })
@@ -124,6 +124,14 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         this.bubbles = []
     }
 
+    async loadBubbles(){
+        this.bubbles = await loadBubbles(this.config)
+    }
+
+    saveBubbles(){
+        saveBubbles(this.config,this.bubbles)
+    }
+
     pushBubble(bubble){
         this.bubbles.push(bubble)
 
@@ -188,7 +196,7 @@ const handleNamingTitle = async function(){
     let filePath = await window.myAPI.createFile()
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config
-    saveBubbles(config,talkRoomView.bubbles)
+    talkRoomView.saveBubbles()
     talkRoomConfigs.push(config)
 }
 

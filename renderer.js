@@ -96,40 +96,26 @@ class Bubble{
 
 }
 
-
-// 保存する
-// 読み込む
-// Bubble <-> DataFile
-class TalkRoom{
-    constructor(config){
-        if(config instanceof TalkRoomConfig){
-            this.path = config.filePath
-        }else{
-            throw Error("configはTalkRoomConfigである必要がある")
+const loadBubbles = async function(config){
+    let dataText = await window.loadFile(config.filePath)
+    let bubbles = []
+    dataText.split("\n").forEach(line => {
+        if(Bubble.canBuild(line)){
+            bubbles.push(Bubble.fromLine(line))
         }
-    }
+    })
 
-    async loadBubbles(){
-        let dataText = await window.loadFile(this.path)
-        let bubbles = []
-        dataText.split("\n").forEach(line => {
-            if(Bubble.canBuild(line)){
-                bubbles.push(Bubble.fromLine(line))
-            }
-        })
-
-        return bubbles
-    }
-
-    async saveBubbles(bubbles){
-        let dataText = ""
-        bubbles.forEach(bubble => {
-            dataText += bubble.toLine() + "\n"
-        })
-
-        await window.writeFile(dataText,this.path)
-    }
+    return bubbles
 }
+const saveBubbles = async function(config,bubbles){
+    let dataText = ""
+    bubbles.forEach(bubble => {
+        dataText += bubble.toLine() + "\n"
+    })
+
+    await window.writeFile(dataText,config.filePath)
+}
+
 
 // 表示する
 // 表示されている対話を揮発のデータで保持している

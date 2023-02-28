@@ -112,6 +112,7 @@ const saveBubbles = async function(config,bubbles){
     })
 
     await window.myAPI.writeFile(dataText,config.filePath)
+    return dataText
 }
 
 

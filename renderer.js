@@ -165,25 +165,6 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
 }
 
 
-class LocalFile{
-    constructor(path){
-        this.path = path
-    }
-
-    async read(){
-        return await window.myAPI.loadFile(this.path)
-    }
-
-    async writeSync(text){
-        await window.myAPI.writeFile(text,this.path)
-    }
-
-    write(){
-        window.myAPI.writeFile(text,this.path)
-    }
-}
-
-
 const setTalkRooms = function(){
     elms.talkRoomList.innerHTML = ""
     talkRoomConfigs.forEach(lm => {
@@ -196,7 +177,9 @@ const init = async function(){
     elms.init()
     talkRoomView.init()
     talkRoomView.updateView()
-    let loadedConfigs = TalkRoomConfig.fromFileToConfigs(await talkRoomConfigFile.read())
+    let loadedConfigs = TalkRoomConfig.fromFileToConfigs(
+        await window.myAPI.loadFile(Config.TalkRoomConfigsFilePath)
+    )
     talkRoomConfigs.push(...loadedConfigs)
     setTalkRooms()
 
@@ -241,7 +224,6 @@ const handleOpenTalkRoom = function(talkRoomConfig){
 
 
 const elms = new Elms()
-const talkRoomConfigFile = new LocalFile(Config.TalkRoomConfigsFilePath)
 const talkRoomConfigs = [];
 const talkRoomView = new TalkRoomView()
 

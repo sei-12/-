@@ -63,14 +63,14 @@ class Bubble{
     static canBuild(lineString){
         // , を一個しか含んでいない
         let hasComma = false
-        lineString.forEach(char => {
-            if(char == ","){
+        for(let i = 0; i < lineString.length;i++){
+            if(lineString[i] == ","){
                 if(hasComma){
                     return false
                 }
                 hasComma = true
             }
-        })
+        }
         return hasComma
     }
 

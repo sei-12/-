@@ -47,7 +47,9 @@ class TalkRoomConfig{
 
     setEventListener(){
         this.node.addEventListener("click",()=>{
-            talkRoomView.set(this)
+            talkRoomView.config = this
+            talkRoomView.bubbles = loadBubbles(this)
+            talkRoomView.title.innerText = this.title
             talkRoomView.updateView()
         })
     }
@@ -147,14 +149,7 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         talkroom.saveBubbles(this.bubbles)
         return config
     }
-
-    set(config){
-        this.config = config
-        this.bubbles = loadBubbles(config)
-        this.title.innerText = config.title
-    }
-    
-    updateView(){
+   updateView(){
         this.node.innerHTML = ""
         this.bubbles.forEach(bubble => {
             this.node.appendChild(bubble.node)

@@ -96,7 +96,7 @@ class Bubble{
 }
 
 const loadBubbles = async function(config){
-    let dataText = await window.loadFile(config.filePath)
+    let dataText = await window.myAPI.loadFile(config.filePath)
     let bubbles = []
     dataText.split("\n").forEach(line => {
         if(Bubble.canBuild(line)){
@@ -112,7 +112,7 @@ const saveBubbles = async function(config,bubbles){
         dataText += bubble.toLine() + "\n"
     })
 
-    await window.writeFile(dataText,config.filePath)
+    await window.myAPI.writeFile(dataText,config.filePath)
 }
 
 

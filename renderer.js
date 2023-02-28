@@ -131,73 +131,7 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         saveBubbles(this.config)
     }
 
-
-
-
-        // この操作はこの階層ではないきがする
-        // リファクタリングの時に直す
-
-
-        if(this.talkroom != null){
-            // この操作をすることはできない
-            throw Error("できない! 説明はソースをみろ")
-        }
-        let filePath = await window.myAPI.createFile()
-        let config = new TalkRoomConfig(title,filePath)
-        
-        let talkroom = new TalkRoom(config)
-        talkroom.saveBubbles(this.bubbles)
-        return config
-    }
     
-        // この操作はこの階層ではないきがする
-        // リファクタリングの時に直す
-
-
-        if(this.talkroom != null){
-            // この操作をすることはできない
-            throw Error("できない! 説明はソースをみろ")
-        }
-        let filePath = await window.myAPI.createFile()
-        let config = new TalkRoomConfig(title,filePath)
-        
-        let talkroom = new TalkRoom(config)
-        talkroom.saveBubbles(this.bubbles)
-        return config
-    }
-    
-
-        // この操作はこの階層ではないきがする
-        // リファクタリングの時に直す
-
-
-        if(this.talkroom != null){
-            // この操作をすることはできない
-            throw Error("できない! 説明はソースをみろ")
-        }
-        let filePath = await window.myAPI.createFile()
-        let config = new TalkRoomConfig(title,filePath)
-        
-        let talkroom = new TalkRoom(config)
-        talkroom.saveBubbles(this.bubbles)
-        return config
-    }
-    
-        // この操作はこの階層ではないきがする
-        // リファクタリングの時に直す
-
-
-        if(this.talkroom != null){
-            // この操作をすることはできない
-            throw Error("できない! 説明はソースをみろ")
-        }
-        let filePath = await window.myAPI.createFile()
-        let config = new TalkRoomConfig(title,filePath)
-        
-        let talkroom = new TalkRoom(config)
-        talkroom.saveBubbles(this.bubbles)
-        return config
-    }
     updateView(){
         this.node.innerHTML = ""
         this.bubbles.forEach(bubble => {

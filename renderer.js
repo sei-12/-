@@ -215,6 +215,9 @@ const handleNamingTitle = async function(){
 
 
 const handleCraeteBubble = function(e){
+    if(elms.speechInputBox.value == ""){
+        return
+    }
     if(e.isComposing || e.key != "Enter") {
         return
     }

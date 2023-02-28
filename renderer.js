@@ -170,6 +170,7 @@ const init = async function(){
     elms.init()
     talkRoomView.init()
     talkRoomView.updateView()
+    talkRoomView.setNoTitled()
     let loadedConfigs = TalkRoomConfig.fromFileToConfigs(
         await window.myAPI.loadFile(Config.TalkRoomConfigsFilePath)
     )

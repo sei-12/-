@@ -179,6 +179,7 @@ const init = async function(){
     )
     talkRoomConfigs.push(...loadedConfigs)
     setTalkRooms()
+    setEventListeners()
 
 }
 
@@ -190,7 +191,9 @@ class Elms{
     }
 }
 
-
+const setEventListeners = function(){
+    elms.speechInputBox.addEventListener("keydown",handleCraeteBubble)
+}
 
 // ユーザーからの操作のハンドラ
 const handleNamingTitle = async function(){
@@ -209,10 +212,14 @@ const handleNamingTitle = async function(){
 }
 
 
-const handleCraeteBubble = function(color,text){
-    let bubble = new Bubble(color,text)
+const handleCraeteBubble = function(e){
+    if(e.isComposing || e.key != "Enter") {
+        return
+    }
+    let bubble = new Bubble(elms.speechInputBox.value,"red")
     talkRoomView.pushBubble(bubble)
     talkRoomView.updateView()
+    elms.speechInputBox.value = ""
 }
 
 const handleCreateTalkRoom = function(){

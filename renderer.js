@@ -190,9 +190,6 @@ class Elms{
 
 
 // ユーザーからの操作のハンドラ
-
-// トーク(configを持っていない)にconfigを与えて保存する
-// その操作をユーザーから受け取った時に最初に呼ばれる
 const handleNamingTitle = async function(){
     
     if(talkRoomView.config != null){

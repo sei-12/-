@@ -48,7 +48,7 @@ let test1 =
 `aaa,red
 bbb,red
 ccc,red
-`
+`   
     test(test1)
     
 }

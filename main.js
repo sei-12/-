@@ -18,8 +18,8 @@ const craeteFile = async function(){
 
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
-        width: 600,
-        height: 400,
+        width: 800,
+        height: 1400,
         title: 'マイアプリ',
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),

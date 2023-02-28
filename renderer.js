@@ -155,6 +155,7 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         this.bubbles.forEach(bubble => {
             this.node.appendChild(bubble.node)
         })
+        this.node.scrollTop = this.node.scrollHeight
     }
 
     // 何も表示されない場合はnotitledがある <- タイトルを後からつけることもできる

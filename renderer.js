@@ -234,4 +234,3 @@ const elms = new Elms()
 const talkRoomConfigs = [];
 const talkRoomView = new TalkRoomView()
 
-window.addEventListener("load",init)

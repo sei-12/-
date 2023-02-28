@@ -99,7 +99,7 @@ class Bubble{
 
 // 保存する
 // 読み込む
-
+// Bubble <-> DataFile
 class TalkRoom{
     constructor(config){
         if(config instanceof TalkRoomConfig){
@@ -238,8 +238,11 @@ const init = async function(){
 class Elms{
     init(){
         this.talkRoomList = document.getElementById("talk-room-list")
+        this.speechInputBox = document.getElementById("speech-input-box")
+
     }
 }
+
 
 const elms = new Elms()
 const talkRoomConfigFile = new LocalFile(Config.TalkRoomConfigsFilePath)

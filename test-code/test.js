@@ -1,4 +1,16 @@
 
+class Con{
+    constructor(){
+        // this.bufSize = 128
+        // this.buf = []
+        this.node = document.getElementById("test-console")
+    }
+
+    log(text,end="\n"){
+        this.node.innerText += text + end
+    }
+}
+
 const testBubbleCanBuild = function(){
     const test = function(lineString,answer){
         count += 1
@@ -15,4 +27,5 @@ const testBubbleCanBuild = function(){
     test(",aaa",false)
 }
 
+const con = new Con()
 testBubbleCanBuild()

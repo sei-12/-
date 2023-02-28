@@ -1,8 +1,6 @@
 
 class Con{
     constructor(){
-        // this.bufSize = 128
-        // this.buf = []
         this.node = document.getElementById("test-console")
     }
 

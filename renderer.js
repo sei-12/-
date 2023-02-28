@@ -57,19 +57,6 @@ class TalkRoomConfig{
     }
 }
 
-// ユーザーからの操作
-const createTalkRoom = function(){
-
-}
-
-const openTalkRoom = function(talkRoomConfig){
-    window.open("./talkroom/index.html")
-    // 新しいウィンドウを開く
-    // 最後からN個分の吹き出しを読み込む
-    
-}
-
-
 class Bubble{
     static canBuild(lineString){
 
@@ -177,11 +164,6 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
     // 何も表示されない場合はnotitledがある <- タイトルを後からつけることもできる
 }
 
-const craeteBubble = function(color,text){
-    let bubble = new Bubble(color,text)
-    talkRoomView.pushBubble(bubble)
-    talkRoomView.updateView()
-}
 
 class LocalFile{
     constructor(path){
@@ -226,6 +208,35 @@ class Elms{
         this.speechInputBox = document.getElementById("speech-input-box")
 
     }
+}
+
+
+
+// ユーザーからの操作のハンドラ
+
+// トーク(configを持っていない)にconfigを与えて保存する
+// その操作をユーザーから受け取った時に最初に呼ばれる
+const handleNamingTitle = function(){
+
+}
+
+
+const handleCraeteBubble = function(color,text){
+    let bubble = new Bubble(color,text)
+    talkRoomView.pushBubble(bubble)
+    talkRoomView.updateView()
+}
+
+const handleCreateTalkRoom = function(){
+
+}
+
+
+const handleOpenTalkRoom = function(talkRoomConfig){
+    window.open("./talkroom/index.html")
+    // 新しいウィンドウを開く
+    // 最後からN個分の吹き出しを読み込む
+    
 }
 
 

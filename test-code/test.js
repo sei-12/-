@@ -15,9 +15,9 @@ const testBubbleCanBuild = function(){
     const test = function(lineString,answer){
         count += 1
         if(Bubble.canBuild(lineString) == answer){
-            console.log(`test${count}`,"OK!")
+            con.log(`test${count} OK!`)
         }else{
-            console.log(`test${count}`,"NG!")
+            con.log(`test${count} NG!`)
         }
     }
     let count = 0

@@ -125,8 +125,8 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
     }
 
     init(){
-        this.title = document.getElementById("")
-        this.node = document.getElementById("")
+        this.title = document.getElementById("talk-room-title")
+        this.node = document.getElementById("bubbles")
     }
 
     setNoTitled(){

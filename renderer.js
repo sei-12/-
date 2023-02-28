@@ -68,7 +68,7 @@ class Bubble{
 
     }
 
-    constructor(color,text){
+    constructor(text,color){
         this.node = this.buildNode()
         this.node.innerText = text
         this.node.style.backgroundColor = color

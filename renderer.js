@@ -131,8 +131,8 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         saveBubbles(this.config)
     }
 
-    async namingTitle(title){
-        // 未保存のthis.bubblesを渡すことがこの操作におけるこのクラスの仕事
+
+
 
         // この操作はこの階層ではないきがする
         // リファクタリングの時に直す
@@ -149,7 +149,56 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         talkroom.saveBubbles(this.bubbles)
         return config
     }
-   updateView(){
+    
+        // この操作はこの階層ではないきがする
+        // リファクタリングの時に直す
+
+
+        if(this.talkroom != null){
+            // この操作をすることはできない
+            throw Error("できない! 説明はソースをみろ")
+        }
+        let filePath = await window.myAPI.createFile()
+        let config = new TalkRoomConfig(title,filePath)
+        
+        let talkroom = new TalkRoom(config)
+        talkroom.saveBubbles(this.bubbles)
+        return config
+    }
+    
+
+        // この操作はこの階層ではないきがする
+        // リファクタリングの時に直す
+
+
+        if(this.talkroom != null){
+            // この操作をすることはできない
+            throw Error("できない! 説明はソースをみろ")
+        }
+        let filePath = await window.myAPI.createFile()
+        let config = new TalkRoomConfig(title,filePath)
+        
+        let talkroom = new TalkRoom(config)
+        talkroom.saveBubbles(this.bubbles)
+        return config
+    }
+    
+        // この操作はこの階層ではないきがする
+        // リファクタリングの時に直す
+
+
+        if(this.talkroom != null){
+            // この操作をすることはできない
+            throw Error("できない! 説明はソースをみろ")
+        }
+        let filePath = await window.myAPI.createFile()
+        let config = new TalkRoomConfig(title,filePath)
+        
+        let talkroom = new TalkRoom(config)
+        talkroom.saveBubbles(this.bubbles)
+        return config
+    }
+    updateView(){
         this.node.innerHTML = ""
         this.bubbles.forEach(bubble => {
             this.node.appendChild(bubble.node)
@@ -194,8 +243,19 @@ class Elms{
 
 // トーク(configを持っていない)にconfigを与えて保存する
 // その操作をユーザーから受け取った時に最初に呼ばれる
-const handleNamingTitle = function(){
+const handleNamingTitle = async function(){
+    
+    if(talkRoomView.config != null){
+        alert("できない操作です")
+    }
 
+    // 入力待ち タイトル
+    let title = null
+    let filePath = await window.myAPI.createFile()
+    let config = new TalkRoomConfig(title,filePath)
+    talkRoomView.config = config
+    saveBubbles(config,talkRoomView.bubbles)
+    talkRoomConfigs.push(config)
 }
 
 

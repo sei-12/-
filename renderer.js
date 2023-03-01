@@ -338,6 +338,9 @@ const handleNamingTitle = async function(){
 
     // 入力待ち タイトル
     let title = await Prompt("タイトルを入力してください")
+    if(title == null){
+        return
+    }
     let filePath = await window.myAPI.createFile()
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config
@@ -366,6 +369,9 @@ const handleCraeteBubble = function(e){
 const handleCreateTalkRoom = async function(){
     hotkeyCreateTalkRoom.stop()
     let title = await Prompt("タイトルを入力してください")
+    if(title == null){
+        return
+    }
     let filePath = await window.myAPI.createFile()
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config

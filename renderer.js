@@ -210,15 +210,19 @@ const handleNamingTitle = async function(){
     
     if(talkRoomView.config != null){
         alert("できない操作です")
+        return
     }
 
     // 入力待ち タイトル
-    let title = null
+    let title = "入力待ちだが実装は後"
     let filePath = await window.myAPI.createFile()
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config
     talkRoomView.saveBubbles()
+    talkRoomView.title.innerText = config.title
     talkRoomConfigs.push(config)
+    TalkRoomConfig.saveConfigs(talkRoomConfigs)
+    setTalkRooms()
 }
 
 
@@ -229,7 +233,7 @@ const handleCraeteBubble = function(e){
     if(e.isComposing || e.key != "Enter") {
         return
     }
-    let bubble = new Bubble(elms.speechInputBox.value,"red")
+    let bubble = new Bubble(elms.speechInputBox.value,"rgb(100,255,100)")
     talkRoomView.pushBubble(bubble)
     talkRoomView.updateView()
     elms.speechInputBox.value = ""

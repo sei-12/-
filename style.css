@@ -1,6 +1,7 @@
 body{
     background-color: rgb(50, 50, 55);
     overflow: hidden;
+    margin: 0;
 }
 
 #body-inner{
@@ -22,6 +23,9 @@ body{
 #talk-room-list{
     width: var(--list-width);
     height: 100vh;
+    background-color: rgb(40,40,45);
+    z-index: 1;
+    box-shadow: 2px 2px 5px black;
 }
 
 #talk-room{
@@ -30,9 +34,16 @@ body{
     position: relative;
 }
 
+#talk-room-title{
+    font-size: x-large;
+    margin-left: 5%;
+}
 #talk-room-head{
-    height: 10%;
+    height: 3%;
+    color: white;
+    background-color: rgb(35,35,40);
     width: 100%;
+    box-shadow: 2px 2px 5px black;
 }
 
 #bubbles{
@@ -43,7 +54,14 @@ body{
 }
 #speech-input-box{
     position: absolute;
-    top: 90%;
+    margin-left: 5%;
+    width: 80%;
+    font-size: x-large;
+    height: 3%;
+    top: 95%;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 1vw;
+    padding-left: 2%;
 }
 
 .bubble{
@@ -54,6 +72,8 @@ body{
     padding-top: 1vw;
     padding-bottom: 1vw;
     margin: 3vw;
+    font-size: large;
+    box-shadow: 3px 3px 7px black;
 }
 
 #bubbles::-webkit-scrollbar{

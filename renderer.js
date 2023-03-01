@@ -179,6 +179,121 @@ const setTalkRooms = function(){
 }
 
 
+const Prompt = async function(message,zIndex = 100){
+    const createNode = {
+        bg : function(){
+            let node = document.createElement("div")
+            node.style.position = "absolute"
+            node.style.top = "0"
+            node.style.zIndex = zIndex
+            node.style.height = "100vh"
+            node.style.width = "100vw"
+            node.style.backdropFilter = "blur(3px)"
+            return node
+        },
+        window : function(){
+            let node = document.createElement("div")
+            node.style.position = "absolute"
+            node.style.top = "40%"
+            node.style.left = "25%"
+            node.style.height = "20%"
+            node.style.width = "50%"
+            node.style.borderRadius = "1vh"
+            node.style.backgroundColor = "rgba(0,0,0,0.8)"
+            node.style.backdropFilter = "blur(3px)"
+            return node
+        },
+        message : function(){
+            let node = document.createElement("div")
+            node.style.color = "white"
+            return node
+        },
+        inputBox : function(){
+            let node = document.createElement("input")
+            node.type = "text"
+            return node
+        },
+        doneBtn : function(){
+            let node = document.createElement("input")
+            node.value = "done"
+            node.type = "button"
+            return node
+        },
+        cancelBtn : function(){
+            let node = document.createElement("input")
+            node.type = "button"
+            node.value = "cancel"
+            return node
+        },
+        inner : function(){
+            let node = document.createElement("div")
+            node.style.margin = "5%"
+            return node
+        }
+    }
+    
+    const init = function(){
+        buildNode()
+        document.body.appendChild(bg)
+        messageNode.innerText = message
+        setEventListener()
+    }
+
+    const finalize = function(){
+        document.body.removeChild(bg)
+    }
+
+    const buildNode = function(){
+        bg.appendChild(pwindow)
+            pwindow.appendChild(inner)
+                inner.appendChild(messageNode)
+                inner.appendChild(inputBox)
+                inner.appendChild(done)
+                inner.appendChild(cancel)
+    }
+
+    const handleDoneBtn = () => {
+        if(inputBox.value == ""){
+            alert("入力が完了していません")
+        }else{
+            __exit(inputBox.value)
+        }
+    }
+
+    const handleCancelBtn = () => {
+        __exit(null)
+    }
+    
+    const setEventListener = function(){
+        done.addEventListener("click",handleDoneBtn)
+        cancel.addEventListener("click",handleCancelBtn)
+    }
+
+    const bg          = createNode.bg()
+    const pwindow     = createNode.window()
+    const inner       = createNode.inner()
+    const messageNode = createNode.message()
+    const inputBox    = createNode.inputBox()
+    const done        = createNode.doneBtn()
+    const cancel      = createNode.cancelBtn()
+    
+    init()
+    const __exit = function(retValue){
+        let event = new CustomEvent("resolve",{detail:{
+            returnValue:retValue
+        }})
+        exitElm.dispatchEvent(event)
+    }
+
+    const exitElm = document.createElement("div")
+    return new Promise((resolve) => {
+        exitElm.addEventListener("resolve",(e)=>{
+            finalize()
+            resolve(e.detail.returnValue)
+        },{once:true})
+    })
+}
+
 const init = async function(){
     elms.init()
     talkRoomView.init()

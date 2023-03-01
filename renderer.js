@@ -176,9 +176,9 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
 }
 
 
-const setTalkRooms = function(){
+const setTalkRooms = function(configs){
     elms.talkRoomList.innerHTML = ""
-    talkRoomConfigs.forEach(lm => {
+    configs.forEach(lm => {
         elms.talkRoomList.appendChild(lm.node)
     })
 }
@@ -308,7 +308,7 @@ const init = async function(){
         await window.myAPI.loadFile(Config.TalkRoomConfigsFilePath)
     )
     talkRoomConfigs.push(...loadedConfigs)
-    setTalkRooms()
+    setTalkRooms(talkRoomConfigs)
     setEventListeners()
 }
 
@@ -316,18 +316,34 @@ class Elms{
     init(){
         this.talkRoomList = document.getElementById("talk-room-list")
         this.speechInputBox = document.getElementById("speech-input-box")
-
+        this.searchWordBox = document.getElementById("search-word-box")
     }
 }
 
 const setEventListeners = function(){
     elms.speechInputBox.addEventListener("keydown",handleCraeteBubble)
+    elms.searchWordBox.addEventListener("keydown",changeSearchWord)
 
     hotkeyNamingTitle = new Hotkey(document,["Meta","s"],handleNamingTitle).start()
     hotkeyCreateTalkRoom = new Hotkey(document,["Meta","n"],handleCreateTalkRoom).start()
 }
 
+
+const filterSearchWord = function(configs){
+    if(elms.searchWordBox.value == ""){
+        return configs
+    }
+    
+    return configs.filter( config => {
+        return config.title.includes(elms.searchWordBox.value)
+    })
+}
+
 // ユーザーからの操作のハンドラ
+const changeSearchWord = function(){
+    setTalkRooms(filterSearchWord(talkRoomConfigs))
+}
+
 const handleNamingTitle = async function(){
     hotkeyNamingTitle.stop()
     if(talkRoomView.config != null){
@@ -348,7 +364,7 @@ const handleNamingTitle = async function(){
     talkRoomView.setTitle()
     talkRoomConfigs.push(config)
     TalkRoomConfig.saveConfigs(talkRoomConfigs)
-    setTalkRooms()
+    setTalkRooms(talkRoomConfigs)
     hotkeyNamingTitle.start()
 }
 

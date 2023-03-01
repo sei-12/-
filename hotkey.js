@@ -54,6 +54,7 @@ const Hotkey = function(htmlElement,keyStrings,func){
     }
 
     this.start = function(){
+        allKeyUP()
         this.htmlElement.addEventListener("keydown",handleKeyDown)
         this.htmlElement.addEventListener("keyup",  handleKeyUP)
         this.htmlElement.addEventListener("blur",handleBlur)
@@ -61,6 +62,7 @@ const Hotkey = function(htmlElement,keyStrings,func){
     }
 
     this.stop = function(){
+        allKeyUP()
         this.htmlElement.removeEventListener("keydown",handleKeyDown)
         this.htmlElement.removeEventListener("keyup",  handleKeyUP)
         this.htmlElement.removeEventListener("blur",handleBlur)

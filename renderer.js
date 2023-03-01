@@ -60,8 +60,9 @@ class TalkRoomConfig{
 }
 
 class Bubble{
+    static dataSeparater = "<----data-separater---->"
     static canBuild(lineString){
-        let s_line = lineString.split(",")
+        let s_line = lineString.split(Bubble.dataSeparater)
         if(s_line.length != 2){
             return false
         }
@@ -72,7 +73,7 @@ class Bubble{
     }
 
     static fromLine(line){
-        return new Bubble(...line.split(","))
+        return new Bubble(...line.split(Bubble.dataSeparater))
     }
 
     constructor(text,color){
@@ -84,7 +85,7 @@ class Bubble{
     }
 
     toLine(){
-        return this.text + "," + this.color
+        return this.text + Bubble.dataSeparater + this.color
     }
 
     buildNode(){

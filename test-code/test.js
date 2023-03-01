@@ -21,10 +21,11 @@ const testBubbleCanBuild = function(){
     }
     let count = 0
     con.log("Test : Bubble.canBuild()")
-    test("aaa,red",true)
-    test("bbb,",false)
-    test("ccc,aaa,ddd",false)
-    test(",aaa",false)
+    test("aaa<----data-separater---->red",true)
+    test("bbb<----data-separater---->",false)
+    test("ccc<----data-separater---->aaa<----data-separater---->ddd",false)
+    test("<----data-separater---->aaa",false)
+    test("ldkfj<----data-separater---->rgb(100,255,100)",true)
 }
 
 const testLoadAndSaveBubble = async function(){
@@ -43,9 +44,12 @@ const testLoadAndSaveBubble = async function(){
     let count = 0
 
 let test1 = 
-`aaa,red
-bbb,red
-ccc,red
+`seirta<----data-separater---->rgb(100,255,100)
+fad<----data-separater---->rgb(100,255,100)
+fladskjf<----data-separater---->rgb(100,255,100)
+flkjads;f<----data-separater---->rgb(100,255,100)
+fjladsf<----data-separater---->rgb(100,255,100)
+hgbna;ds<----data-separater---->rgb(100,255,100)
 `   
     test(test1)
     

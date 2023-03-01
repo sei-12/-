@@ -5,14 +5,18 @@ const DATA_FILE_PATH = "*****"
 
 
 const generateRandomString = function(length){
-    
+    let chars = "qwertyuiopasdfghjklzxcvbnm1234567890"
+    let randomString = ""
+    for(let i = 0; i < length; i++){
+        randomString += chars[(Math.floor(Math.random() * 10000) % chars.length)]
+    }
+    return randomString
 }
 
 const craeteFile = async function(){
-    let fileName = generateRandomString(16)
-    let path = fileName
-
-
+    let fileName = generateRandomString(8)
+    let path = "./test-datas/" + fileName
+    fs.writeFileSync(path,"")
     return path
 }
 

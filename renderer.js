@@ -323,6 +323,7 @@ const setEventListeners = function(){
     elms.speechInputBox.addEventListener("keydown",handleCraeteBubble)
 
     hotkeyNamingTitle = new Hotkey(document,["Meta","s"],handleNamingTitle).start()
+    hotkeyCreateTalkRoom = new Hotkey(document,["Meta","n"],handleCreateTalkRoom).start()
 }
 
 // ユーザーからの操作のハンドラ
@@ -361,8 +362,18 @@ const handleCraeteBubble = function(e){
     elms.speechInputBox.value = ""
 }
 
-const handleCreateTalkRoom = function(){
-
+const handleCreateTalkRoom = async function(){
+    hotkeyCreateTalkRoom.stop()
+    let title = await Prompt("タイトルを入力してください")
+    let filePath = await window.myAPI.createFile()
+    let config = new TalkRoomConfig(title,filePath)
+    talkRoomView.config = config
+    await talkRoomView.loadBubbles()
+    talkRoomView.setTitle()
+    talkRoomConfigs.push(config)
+    TalkRoomConfig.saveConfigs(talkRoomConfigs)
+    setTalkRooms()
+    hotkeyCreateTalkRoom.start()
 }
 
 
@@ -374,6 +385,7 @@ const handleOpenTalkRoom = function(talkRoomConfig){
 }
 
 let hotkeyNamingTitle = null
+let hotkeyCreateTalkRoom = null
 const elms = new Elms()
 const talkRoomConfigs = [];
 const talkRoomView = new TalkRoomView()

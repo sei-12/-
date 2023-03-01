@@ -16,16 +16,26 @@ body{
     --room-width : 80vw;
 }
 
-#talk-room-btn{
-    padding: 10px;
+#search-word-box{
+    margin-top: 10%;
+    margin-left: 5%;
+    width: 80%;
+    font-size: small;
 }
-
-#talk-room-list{
+#sidebar{
     width: var(--list-width);
     height: 100vh;
     background-color: rgb(40,40,45);
     z-index: 1;
     box-shadow: 2px 2px 5px black;
+}
+
+#talk-room-list{
+    overflow-y: scroll;
+}
+
+#talk-room-list::-webkit-scrollbar{
+    display: none;
 }
 
 #talk-room{
@@ -79,4 +89,17 @@ body{
 
 #bubbles::-webkit-scrollbar{
     display: none;
+}
+
+
+.talk-room-btn{
+    padding: 3%;
+    width: 90%;
+    height: 3%;
+    /* background-color: red; */
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border:none;
+    text-align: left;
+    padding-left: 6%;
 }

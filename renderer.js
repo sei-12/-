@@ -138,6 +138,12 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         this.node = document.getElementById("bubbles")
     }
 
+    clear(){
+        this.bubbles = []
+        this.config = null
+        this.title.innerText = ""
+    }
+
     setNoTitled(){
         this.title.innerText = "No Titled"
         this.bubbles = []
@@ -367,6 +373,7 @@ const handleCreateTalkRoom = async function(){
     let title = await Prompt("タイトルを入力してください")
     let filePath = await window.myAPI.createFile()
     let config = new TalkRoomConfig(title,filePath)
+    talkRoomView.clear()
     talkRoomView.config = config
     await talkRoomView.loadBubbles()
     talkRoomView.setTitle()

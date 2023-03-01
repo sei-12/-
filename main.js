@@ -14,7 +14,7 @@ const generateRandomString = function(length){
 }
 
 const craeteFile = async function(){
-    let fileName = generateRandomString(8)
+    let fileName = generateRandomString(16)
     let path = "./test-datas/" + fileName
     fs.writeFileSync(path,"")
     return path

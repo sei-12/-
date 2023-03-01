@@ -304,6 +304,7 @@ const init = async function(){
     elms.init()
     hotkeys.init()
     hotkeys.allStart()
+    bubbleColorPicker.init()
     talkRoomView.init()
     talkRoomView.updateView()
     talkRoomView.setNoTitled()
@@ -329,6 +330,8 @@ class Hotkeys{
         this.createTalkRoom = new Hotkey(document,["Meta","n"],handleCreateTalkRoom)
         this.focusSearchWordBox = new Hotkey(document,["Meta","f"],()=>{ elms.searchWordBox.focus() })
         this.focusSpeechInputBox = new Hotkey(document,["Meta","/"],()=>{ elms.speechInputBox.focus() })
+        this.colorChangeUP = new Hotkey(elms.speechInputBox,["Control","p"],()=>{bubbleColorPicker.up()})
+        this.colorChangeDown = new Hotkey(elms.speechInputBox,["Control","n"],()=>{bubbleColorPicker.down()})
     }
 
     allStart(){
@@ -336,6 +339,8 @@ class Hotkeys{
         this.createTalkRoom.start()
         this.focusSearchWordBox.start()
         this.focusSpeechInputBox.start()
+        this.colorChangeDown.start()
+        this.colorChangeUP.start()
     }
 
     allStop(){
@@ -347,6 +352,7 @@ const setEventListeners = function(){
     elms.speechInputBox.addEventListener("keydown",handleCraeteBubble)
     elms.searchWordBox.addEventListener("keydown",changeSearchWord)
 
+    document.addEventListener("keydown",(e)=>console.log(e.key))
 }
 
 
@@ -358,6 +364,46 @@ const filterSearchWord = function(configs){
     return configs.filter( config => {
         return config.title.includes(elms.searchWordBox.value)
     })
+}
+
+class BubbleColorPicker{
+    constructor(){
+        this.colors = ["rgb(100,255,100)","rgb(255,100,100)","rgb(100,100,255)"]
+        this.index = 0
+        
+    }
+
+    init(){
+        this.#setColor()
+    }
+
+    #setColor(){
+        console.log("call setcolor")
+        elms.speechInputBox.style.outlineColor = this.colors[this.index]
+
+        console.log(this.colors[this.index])
+    }
+
+    get(){
+        return this.colors[this.index]
+    }
+
+    up(){
+        console.log("hello")
+        this.index += 1
+        if(this.index == this.colors.length){
+            this.index = 0
+        }
+        this.#setColor()
+    }
+    down(){
+        console.log("hello")
+        this.index -= 1
+        if(this.index < 0){
+            this.index = this.colors.length - 1
+        }
+        this.#setColor()
+    }
 }
 
 // ユーザーからの操作のハンドラ
@@ -397,7 +443,7 @@ const handleCraeteBubble = function(e){
     if(e.isComposing || e.key != "Enter") {
         return
     }
-    let bubble = new Bubble(elms.speechInputBox.value,"rgb(100,255,100)")
+    let bubble = new Bubble(elms.speechInputBox.value,bubbleColorPicker.get())
     talkRoomView.pushBubble(bubble)
     talkRoomView.updateView()
     elms.speechInputBox.value = ""
@@ -429,6 +475,7 @@ const handleOpenTalkRoom = function(talkRoomConfig){
     
 }
 
+const bubbleColorPicker = new BubbleColorPicker()
 const hotkeys = new Hotkeys()
 const elms = new Elms()
 const talkRoomConfigs = [];

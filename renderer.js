@@ -241,6 +241,7 @@ const Prompt = async function(message,zIndex = 100){
         buildNode()
         document.body.appendChild(bg)
         messageNode.innerText = message
+        inputBox.focus()
         setEventListener()
     }
 
@@ -301,6 +302,8 @@ const Prompt = async function(message,zIndex = 100){
 
 const init = async function(){
     elms.init()
+    hotkeys.init()
+    hotkeys.allStart()
     talkRoomView.init()
     talkRoomView.updateView()
     talkRoomView.setNoTitled()
@@ -320,12 +323,30 @@ class Elms{
     }
 }
 
+class Hotkeys{
+    init(){
+        this.namingTitle = new Hotkey(document,["Meta","s"],handleNamingTitle)
+        this.createTalkRoom = new Hotkey(document,["Meta","n"],handleCreateTalkRoom)
+        this.focusSearchWordBox = new Hotkey(document,["Meta","f"],()=>{ elms.searchWordBox.focus() })
+        this.focusSpeechInputBox = new Hotkey(document,["Meta","/"],()=>{ elms.speechInputBox.focus() })
+    }
+
+    allStart(){
+        this.namingTitle.start()
+        this.createTalkRoom.start()
+        this.focusSearchWordBox.start()
+        this.focusSpeechInputBox.start()
+    }
+
+    allStop(){
+        
+    }
+}
+
 const setEventListeners = function(){
     elms.speechInputBox.addEventListener("keydown",handleCraeteBubble)
     elms.searchWordBox.addEventListener("keydown",changeSearchWord)
 
-    hotkeyNamingTitle = new Hotkey(document,["Meta","s"],handleNamingTitle).start()
-    hotkeyCreateTalkRoom = new Hotkey(document,["Meta","n"],handleCreateTalkRoom).start()
 }
 
 
@@ -333,7 +354,7 @@ const filterSearchWord = function(configs){
     if(elms.searchWordBox.value == ""){
         return configs
     }
-    
+
     return configs.filter( config => {
         return config.title.includes(elms.searchWordBox.value)
     })
@@ -345,10 +366,10 @@ const changeSearchWord = function(){
 }
 
 const handleNamingTitle = async function(){
-    hotkeyNamingTitle.stop()
+    hotkeys.namingTitle.stop()
     if(talkRoomView.config != null){
         alert("できない操作です")
-        hotkeyNamingTitle.start()
+        hotkeys.namingTitle.start()
         return
     }
 
@@ -365,7 +386,7 @@ const handleNamingTitle = async function(){
     talkRoomConfigs.push(config)
     TalkRoomConfig.saveConfigs(talkRoomConfigs)
     setTalkRooms(talkRoomConfigs)
-    hotkeyNamingTitle.start()
+    hotkeys.namingTitle.start()
 }
 
 
@@ -383,7 +404,7 @@ const handleCraeteBubble = function(e){
 }
 
 const handleCreateTalkRoom = async function(){
-    hotkeyCreateTalkRoom.stop()
+    hotkeys.createTalkRoom.stop()
     let title = await Prompt("タイトルを入力してください")
     if(title == null){
         return
@@ -397,7 +418,7 @@ const handleCreateTalkRoom = async function(){
     talkRoomConfigs.push(config)
     TalkRoomConfig.saveConfigs(talkRoomConfigs)
     setTalkRooms()
-    hotkeyCreateTalkRoom.start()
+    hotkeys.createTalkRoom.start()
 }
 
 
@@ -408,8 +429,7 @@ const handleOpenTalkRoom = function(talkRoomConfig){
     
 }
 
-let hotkeyNamingTitle = null
-let hotkeyCreateTalkRoom = null
+const hotkeys = new Hotkeys()
 const elms = new Elms()
 const talkRoomConfigs = [];
 const talkRoomView = new TalkRoomView()

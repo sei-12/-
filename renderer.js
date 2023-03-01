@@ -305,7 +305,6 @@ const init = async function(){
     talkRoomConfigs.push(...loadedConfigs)
     setTalkRooms()
     setEventListeners()
-
 }
 
 class Elms{
@@ -318,18 +317,21 @@ class Elms{
 
 const setEventListeners = function(){
     elms.speechInputBox.addEventListener("keydown",handleCraeteBubble)
+
+    hotkeyNamingTitle = new Hotkey(document,["Meta","s"],handleNamingTitle).start()
 }
 
 // ユーザーからの操作のハンドラ
 const handleNamingTitle = async function(){
-    
+    hotkeyNamingTitle.stop()
     if(talkRoomView.config != null){
         alert("できない操作です")
+        hotkeyNamingTitle.start()
         return
     }
 
     // 入力待ち タイトル
-    let title = "入力待ちだが実装は後"
+    let title = await Prompt("hello Prompt")
     let filePath = await window.myAPI.createFile()
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config
@@ -338,6 +340,7 @@ const handleNamingTitle = async function(){
     talkRoomConfigs.push(config)
     TalkRoomConfig.saveConfigs(talkRoomConfigs)
     setTalkRooms()
+    hotkeyNamingTitle.start()
 }
 
 
@@ -366,8 +369,18 @@ const handleOpenTalkRoom = function(talkRoomConfig){
     
 }
 
-
+let hotkeyNamingTitle = null
 const elms = new Elms()
 const talkRoomConfigs = [];
 const talkRoomView = new TalkRoomView()
 
+// cmd n で新規作成 <- 現在のファイルが未保存ならきく
+// list のデザイン
+// list 検索機能
+// input speech box cmd p n で色変更
+// cmd s でnotitleを保存
+
+// ショートカットで過去のbubbleを引用
+// 画像を上げれるようにする
+// "" の中を変数のように扱う <- タブ補完
+// if を使える <- endifを入力するまで

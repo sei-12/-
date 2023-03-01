@@ -147,6 +147,10 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
         this.bubbles = await loadBubbles(this.config)
     }
 
+    setTitle(){
+        this.title.innerText = this.config.title
+    }
+
     saveBubbles(){
         saveBubbles(this.config,this.bubbles)
     }
@@ -336,7 +340,7 @@ const handleNamingTitle = async function(){
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config
     talkRoomView.saveBubbles()
-    talkRoomView.title.innerText = config.title
+    talkRoomView.setTitle()
     talkRoomConfigs.push(config)
     TalkRoomConfig.saveConfigs(talkRoomConfigs)
     setTalkRooms()

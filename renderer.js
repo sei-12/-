@@ -368,7 +368,7 @@ const filterSearchWord = function(configs){
 
 class BubbleColorPicker{
     constructor(){
-        this.colors = ["rgb(100,255,100)","rgb(255,100,100)","rgb(100,100,255)"]
+        this.colors = ["rgb(30,40,30)","rgb(40,30,30)","rgb(30,30,40)"]
         this.index = 0
         
     }

@@ -87,6 +87,7 @@ body{
     margin: 3vw;
     font-size: large;
     box-shadow: 3px 3px 7px black;
+    color: white;
 }
 
 #bubbles::-webkit-scrollbar{

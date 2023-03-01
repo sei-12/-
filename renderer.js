@@ -398,11 +398,8 @@ const elms = new Elms()
 const talkRoomConfigs = [];
 const talkRoomView = new TalkRoomView()
 
-// cmd n で新規作成 <- 現在のファイルが未保存ならきく
-// list のデザイン
 // list 検索機能
 // input speech box cmd p n で色変更
-// cmd s でnotitleを保存
 
 // ショートカットで過去のbubbleを引用
 // 画像を上げれるようにする

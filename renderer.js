@@ -29,6 +29,14 @@ class TalkRoomConfig{
 
         return true
     }
+
+    static async saveConfigs(configs){
+        let text = ""
+        configs.forEach(config => {
+            text += config.toLine() + "\n"
+        })
+        window.myAPI.writeFile({text:text,path:Config.TalkRoomConfigsFilePath})
+    }
     
     constructor(title,logFilePath){
         this.title = title
@@ -55,7 +63,7 @@ class TalkRoomConfig{
     }
 
     toLine(){
-
+        return this.title + "," + this.filePath
     }
 }
 

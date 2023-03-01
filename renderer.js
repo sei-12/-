@@ -335,7 +335,7 @@ const handleNamingTitle = async function(){
     }
 
     // 入力待ち タイトル
-    let title = await Prompt("hello Prompt")
+    let title = await Prompt("タイトルを入力してください")
     let filePath = await window.myAPI.createFile()
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config

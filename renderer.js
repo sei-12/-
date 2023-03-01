@@ -370,6 +370,7 @@ const handleCreateTalkRoom = async function(){
     let config = new TalkRoomConfig(title,filePath)
     talkRoomView.config = config
     await talkRoomView.loadBubbles()
+    talkRoomView.updateView()
     talkRoomView.setTitle()
     talkRoomConfigs.push(config)
     TalkRoomConfig.saveConfigs(talkRoomConfigs)

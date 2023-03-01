@@ -111,8 +111,7 @@ const saveBubbles = async function(config,bubbles){
     bubbles.forEach(bubble => {
         dataText += bubble.toLine() + "\n"
     })
-
-    await window.myAPI.writeFile(dataText,config.filePath)
+    await window.myAPI.writeFile({text:dataText,path:config.filePath})
     return dataText
 }
 
@@ -146,8 +145,8 @@ class TalkRoomView{ // <- talkRoomBubblesの方がいい?
     pushBubble(bubble){
         this.bubbles.push(bubble)
 
-        if(this.talkroom == null) return;
-        saveBubbles(this.config)
+        if(this.config == null) return;
+        this.saveBubbles()
     }
 
     

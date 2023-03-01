@@ -27,7 +27,7 @@ const createWindow = () => {
     });
 
     ipcMain.handle('load-data-file',  async(_,path)=> fs.readFileSync(path,'utf-8'));
-    ipcMain.handle('write-data-file', async (_,text,path) => fs.writeFileSync(path,text));
+    ipcMain.handle('write-data-file', async(_,arg) => fs.writeFileSync(arg.path,arg.text));
     ipcMain.handle('create-data-file',craeteFile)
     mainWindow.loadFile('index.html');
 };

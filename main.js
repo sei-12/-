@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+import ElectronStore from 'electron-store';
+const store = new ElectronStore();
 const path = require('path');
 const fs = require('fs');
-const DATA_FILE_PATH = "*****"
 
 
 const generateRandomString = function(length){
@@ -15,9 +16,19 @@ const generateRandomString = function(length){
 
 const craeteFile = async function(){
     let fileName = generateRandomString(16)
-    let path = "./test-datas/" + fileName
-    fs.writeFileSync(path,"")
-    return path
+    store.set(fileName,"")
+    return fileName
+}
+
+const readFile = async function(_,path){
+    if(!store.has(path)){
+        store.set(path,"")
+    }
+    return store.get(path)
+}
+
+const writeFile = async function(_,arg){
+    store.set(arg.path,arg.text)
 }
 
 const createWindow = () => {
@@ -30,8 +41,8 @@ const createWindow = () => {
         },
     });
 
-    ipcMain.handle('load-data-file',  async(_,path)=> fs.readFileSync(path,'utf-8'));
-    ipcMain.handle('write-data-file', async(_,arg) => fs.writeFileSync(arg.path,arg.text));
+    ipcMain.handle('load-data-file',readFile);
+    ipcMain.handle('write-data-file', writeFile);
     ipcMain.handle('create-data-file',craeteFile)
     mainWindow.loadFile('index.html');
 };

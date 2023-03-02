@@ -463,7 +463,7 @@ const handleCreateTalkRoom = async function(){
     talkRoomView.setTitle()
     talkRoomConfigs.push(config)
     TalkRoomConfig.saveConfigs(talkRoomConfigs)
-    setTalkRooms()
+    setTalkRooms(talkRoomConfigs)
     hotkeys.createTalkRoom.start()
 }
 

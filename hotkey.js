@@ -51,6 +51,13 @@ class Modifiers{
         this.Shift = shift
     }
 
+    allKeyUP(){
+        this.Alt = false
+        this.Cmd = false
+        this.Ctrl = false
+        this.Shift = false
+    }
+
     change(eDotKey,bool){
         if(eDotKey == Modifier.Alt){
             this.Alt = bool
@@ -101,6 +108,7 @@ const Hotkey = function(node,modifiers,char,func){
         this.node.removeEventListener("keydown",handleNodeKeydown)
         document.removeEventListener("keydown",handleModikey)
         document.removeEventListener("keyup",handleModikey)
+        this.isDown.allKeyUP()
     }
 
     this.node = node

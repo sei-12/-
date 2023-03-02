@@ -351,8 +351,6 @@ class Hotkeys{
 const setEventListeners = function(){
     elms.speechInputBox.addEventListener("keydown",handleCraeteBubble)
     elms.searchWordBox.addEventListener("keydown",changeSearchWord)
-
-    document.addEventListener("keydown",(e)=>console.log(e.key))
 }
 
 

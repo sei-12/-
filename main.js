@@ -1,8 +1,8 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
-import ElectronStore from 'electron-store';
-const store = new ElectronStore();
+const Store = require('electron-store');
 const path = require('path');
 const fs = require('fs');
+
 
 
 const generateRandomString = function(length){
@@ -14,24 +14,26 @@ const generateRandomString = function(length){
     return randomString
 }
 
-const craeteFile = async function(){
-    let fileName = generateRandomString(16)
-    store.set(fileName,"")
-    return fileName
-}
-
-const readFile = async function(_,path){
-    if(!store.has(path)){
-        store.set(path,"")
-    }
-    return store.get(path)
-}
-
-const writeFile = async function(_,arg){
-    store.set(arg.path,arg.text)
-}
 
 const createWindow = () => {
+    const store = new Store();
+    const craeteFile = async function(){
+        let fileName = generateRandomString(16)
+        store.set(fileName,"")
+        return fileName
+    }
+
+    const readFile = async function(_,path){
+        if(!store.has(path)){
+            store.set(path,"")
+        }
+        return store.get(path)
+    }
+
+    const writeFile = async function(_,arg){
+        store.set(arg.path,arg.text)
+    }
+
     const mainWindow = new BrowserWindow({
         width: 800,
         height: 1400,

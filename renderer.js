@@ -451,6 +451,7 @@ const handleCreateTalkRoom = async function(){
     hotkeys.createTalkRoom.stop()
     let title = await Prompt("タイトルを入力してください")
     if(title == null){
+        hotkeys.createTalkRoom.start()
         return
     }
     let filePath = await window.myAPI.createFile()

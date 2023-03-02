@@ -326,12 +326,12 @@ class Elms{
 
 class Hotkeys{
     init(){
-        this.namingTitle = new Hotkey(document,["Meta","s"],handleNamingTitle)
-        this.createTalkRoom = new Hotkey(document,["Meta","n"],handleCreateTalkRoom)
-        this.focusSearchWordBox = new Hotkey(document,["Meta","f"],()=>{ elms.searchWordBox.focus() })
-        this.focusSpeechInputBox = new Hotkey(document,["Meta","/"],()=>{ elms.speechInputBox.focus() })
-        this.colorChangeUP = new Hotkey(elms.speechInputBox,["Control","p"],()=>{bubbleColorPicker.up()})
-        this.colorChangeDown = new Hotkey(elms.speechInputBox,["Control","n"],()=>{bubbleColorPicker.down()})
+        this.namingTitle = new Hotkey(document,[Modifier.Cmd],"s",handleNamingTitle)
+        this.createTalkRoom = new Hotkey(document,[Modifier.Cmd],"n",handleCreateTalkRoom)
+        this.focusSearchWordBox = new Hotkey(document,[Modifier.Cmd],"f",()=>{ elms.searchWordBox.focus() })
+        this.focusSpeechInputBox = new Hotkey(document,[Modifier.Cmd],"/",()=>{ elms.speechInputBox.focus() })
+        this.colorChangeUP = new Hotkey(elms.speechInputBox,[Modifier.Ctrl],"p",()=>{bubbleColorPicker.up()})
+        this.colorChangeDown = new Hotkey(elms.speechInputBox,[Modifier.Ctrl],"n",()=>{bubbleColorPicker.down()})
     }
 
     allStart(){

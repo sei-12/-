@@ -1,83 +1,113 @@
-const Key = function(keyString){
-    this.down = () => {
-        this.isDown = true
-    }
 
-    this.up = () => {
-        this.isDown = false
-    }
-    
-    this.keyString = keyString
-    this.isDown = false
+class Modifier{
+    static Ctrl  = "Control"
+    static Shift = "Shift"
+    static Alt   = "Alt"
+    static Cmd   = "Meta"
 }
 
-const Hotkey = function(htmlElement,keyStrings,func){
-
-    const buildKeys = function(keyStrings){
-        if (keyStrings.includes('Shift')){
-            throw Error("Shiftは文字を大文字にすることによって表現してください (Shift + Meta + a) -> (Meta + A)")
+class Modifiers{
+    static equal(A,B){
+        if(A.Alt != B.Alt){
+            return false
         }
-        return keyStrings.map(keyString => new Key(keyString))
+        if(A.Cmd != B.Cmd){
+            return false
+        }
+        if(A.Ctrl != B.Ctrl){
+            return false
+        }
+        if(A.Shift != B.Shift){
+            return false
+        }
+        return true
     }
 
-    const handleKeyDown = (e) => {
-        let downKey = this.keys.find( key => e.key == key.keyString)
-        if (downKey instanceof Key){
-            downKey.down()
+    static fromKeyStrings(keyStrings){
+        let alt = false
+        let cmd = false
+        let ctrl = false
+        let shift = false
+
+        if(keyStrings.includes(Modifier.Alt)){
+            alt = true
+        }
+        if(keyStrings.includes(Modifier.Cmd)){
+            cmd = true
+        }
+        if(keyStrings.includes(Modifier.Ctrl)){
+            ctrl = true
+        }
+        if(keyStrings.includes(Modifier.Shift)){
+            shift = true
+        }
+        return new Modifiers(alt,ctrl,cmd,shift)
+    }
+
+    constructor(alt,ctrl,cmd,shift){
+        this.Alt = alt
+        this.Ctrl = ctrl
+        this.Cmd = cmd
+        this.Shift = shift
+    }
+
+    change(eDotKey,bool){
+        if(eDotKey == Modifier.Alt){
+            this.Alt = bool
+        }
+        else if(eDotKey == Modifier.Cmd){
+            this.Cmd = bool
+        }
+        else if(eDotKey == Modifier.Ctrl){
+            this.Ctrl = bool
+        }
+        else if(eDotKey == Modifier.Shift){
+            this.Shift = bool
+        }
+    }
+}
+
+
+const Hotkey = function(node,modifiers,char,func){
+
+    const handleNodeKeydown = (e) => {
+        if(Modifiers.equal(this.modifiers,this.isDown) == false){
+            return
         }
 
-        if ( this.keys.every( key => key.isDown ) ){
+        if(e.key == this.char){
             this.func()
-            downKey.up()
         }
     }
 
-    const handleKeyUP = (e) => {
-        let key = this.keys.find( key => e.key == key.keyString)
-        if (key instanceof Key){
-            key.up()
+    const setChar = (char) => {
+        if(this.modifiers.Shift){
+            char = char.toLowerCase()
         }
+        return char
     }
 
-    const allKeyUP = () => {
-        this.keys.forEach( key => key.up() );
-    }
-    
-    const handleBlur = (e) => {
-        // cmd + a でインスタンスが生成された例を考える　
-        // cmdを押している状態でhtmlElementからフォーカスが外れるとcmdを離してもhandleKeyUPが実行されない
-        // だからもう一度フォーカスするとcmdを押さなくてもaだけでthis.funcが実行される　
-        // しかし
-        // handleBlur関数をhandleするとcmdを押した状態でフォーカスを外しcmdを離さないままもう一度フォーカスすると
-        // aを押してもthis.funcが実行されない
-        allKeyUP()
+    const handleModikey = (e) => {
+        this.isDown.change(e.key,e.type == "keydown")
     }
 
     this.start = function(){
-        allKeyUP()
-        this.htmlElement.addEventListener("keydown",handleKeyDown)
-        this.htmlElement.addEventListener("keyup",  handleKeyUP)
-        this.htmlElement.addEventListener("blur",handleBlur)
-        return this
+        this.node.addEventListener("keydown",handleNodeKeydown)
+        document.addEventListener("keydown",handleModikey)
+        document.addEventListener("keyup",handleModikey)
     }
 
     this.stop = function(){
-        allKeyUP()
-        this.htmlElement.removeEventListener("keydown",handleKeyDown)
-        this.htmlElement.removeEventListener("keyup",  handleKeyUP)
-        this.htmlElement.removeEventListener("blur",handleBlur)
+        this.node.removeEventListener("keydown",handleNodeKeydown)
+        document.removeEventListener("keydown",handleModikey)
+        document.removeEventListener("keyup",handleModikey)
     }
 
-    if (!keyStrings instanceof Array){
-        throw Error("keyStringsは配列である必要があります")
-    }
-    if ( typeof func != "function"){
-        console.log(typeof func)
-        throw Error("funcは関数である必要があります")
-    }
-    
-    
-    this.htmlElement = htmlElement
-    this.keys = buildKeys(keyStrings)
+    this.node = node
+    this.modifiers = Modifiers.fromKeyStrings(modifiers)
+    this.char = setChar(char)
     this.func = func
+
+    this.isDown = new Modifiers(false,false,false,false)
 }
+

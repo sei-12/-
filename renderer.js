@@ -329,7 +329,7 @@ class Hotkeys{
         this.namingTitle = new Hotkey(document,[Modifier.Cmd],"s",handleNamingTitle)
         this.createTalkRoom = new Hotkey(document,[Modifier.Cmd],"n",handleCreateTalkRoom)
         this.focusSearchWordBox = new Hotkey(document,[Modifier.Cmd],"f",()=>{ elms.searchWordBox.focus() })
-        this.focusSpeechInputBox = new Hotkey(document,[Modifier.Cmd],"/",()=>{ elms.speechInputBox.focus() })
+        this.focusSpeechInputBox = new Hotkey(document,[Modifier.Ctrl],"/",()=>{ elms.speechInputBox.focus() })
         this.colorChangeUP = new Hotkey(elms.speechInputBox,[Modifier.Ctrl],"p",()=>{bubbleColorPicker.up()})
         this.colorChangeDown = new Hotkey(elms.speechInputBox,[Modifier.Ctrl],"n",()=>{bubbleColorPicker.down()})
     }
